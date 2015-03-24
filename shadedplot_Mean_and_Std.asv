@@ -10,7 +10,7 @@ leftKnee = [];
 rightKnee = [];
 
 outFileName = regexp(list(1).name, '_', 'split');
-outFileName = [char(outFileName(1)),'_',char(outFileName(2))];
+outFileName = [char(outFileName(1)),'_',char(outFileName(2)),'_',char(outFileName(3))];
 
 
 for fileNum = 1:size(list)
@@ -47,23 +47,21 @@ subplot(2,2,4);
 plot(rightKnee_mean);
 shadedplot(xAxis, [rightKnee_mean+rightKnee_std]', [rightKnee_mean-rightKnee_std]', [0.7 0.7 1], 'b');
 hold on;plot(xAxis, rightKnee_mean, 'b');hold off;
-NewFilename = [file_path, '\', outFileName, '_Model']
-set(gcf,'name',NewFilename)
-saveas(gcf,[strtok(NewFilename, '.'),'.jpg']);
-
-data = [leftHip_mean'; leftHip_std'; rightHip_mean'; rightHip_std'; leftKnee_mean'; leftKnee_std'; rightKnee_mean'; rightKnee_std'];
 
 if ~exist('out', 'dir')
   mkdir('out');
 end
 
-fid=fopen([file_path, '\', outFileName, '.model'],'w');
-fprintf(fid,'%6.2f, %6.2f, %6.2f, %6.2f, %6.2f, %6.2f, %6.2f, %6.2f\n', data);
-
+fid=fopen([file_path, '\', outFileName, '.model'],'w')
+fprintf(fid,'%6.2f, %6.2f, %6.2f, %6.2f, %6.2f, %6.2f, %6.2f, %6.2f\n',...
+    leftHip_mean, leftHip_std, rightHip_mean, rightHip_std, ...
+    leftKnee_mean, leftKnee_std, rightKnee_mean, rightKnee_std);
 fclose(fid);  %Ãö³¬ÀÉ®×
 
 
-
+NewFilename = [file_path, '\', outFileName, '_Model']
+set(gcf,'name',NewFilename)
+saveas(gcf,[strtok(NewFilename, '.'),'.jpg']);
 
 
 
