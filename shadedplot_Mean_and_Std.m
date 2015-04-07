@@ -4,6 +4,13 @@ file_path = uigetdir
 % fullfile(matlabroot, filedir);
 list = dir([ file_path,'\*.percent']);
 
+header={'Left Hip','Right Hip','Left Knee','Right Knee',    ...
+'Back Roll','Back yaw','Back Pitch',                        ...
+'Left Thigh Roll','Left Thigh yaw','Left Thigh Pitch',      ...
+'Right Thigh Roll','Right Thigh yaw','Right Thigh Pitch',   ...
+'Left Shank Roll','Left Shank yaw','Left Shank Pitch',      ...
+'Right Shank Roll','Right Shank yaw','Right Shank Pitch'};
+
 leftHip = [];
 rightHip = [];
 leftKnee = [];
@@ -36,17 +43,24 @@ xAxis = [0.01:0.01:100];
 %% Display
 subplot(2,2,1);
 shadedplot(xAxis, [leftHip_mean+leftHip_std]', [leftHip_mean-leftHip_std]', [1 0.7 0.7], 'r');
+title(header(1));
 hold on;plot(xAxis, leftHip_mean, 'r');hold off;
+
 subplot(2,2,2);
 shadedplot(xAxis, [rightHip_mean+rightHip_std]', [rightHip_mean-rightHip_std]', [0.7 0.7 1], 'b');
+title(header(2));
 hold on;plot(xAxis, rightHip_mean, 'b');hold off;
+
 subplot(2,2,3);
 shadedplot(xAxis, [leftKnee_mean+leftKnee_std]', [leftKnee_mean-leftKnee_std]', [1 0.7 0.7], 'r');
+title(header(3));
 hold on;plot(xAxis, leftKnee_mean, 'r');hold off;
+
 subplot(2,2,4);
-plot(rightKnee_mean);
 shadedplot(xAxis, [rightKnee_mean+rightKnee_std]', [rightKnee_mean-rightKnee_std]', [0.7 0.7 1], 'b');
+title(header(4));
 hold on;plot(xAxis, rightKnee_mean, 'b');hold off;
+
 NewFilename = [file_path, '\', outFileName, '_Model']
 set(gcf,'name',NewFilename)
 saveas(gcf,[strtok(NewFilename, '.'),'.jpg']);
