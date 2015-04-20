@@ -65,16 +65,19 @@ NewFilename = [file_path, '\', outFileName, '_Model']
 set(gcf,'name',NewFilename)
 saveas(gcf,[strtok(NewFilename, '.'),'.jpg']);
 
-data = [leftHip_mean'; leftHip_std'; rightHip_mean'; rightHip_std'; leftKnee_mean'; leftKnee_std'; rightKnee_mean'; rightKnee_std'];
+
+
+% % % the last number means the step is good(for Machine Learning)
+data = [zeros(size(leftHip_mean,1),1)'; leftHip_mean'; leftHip_std'; rightHip_mean'; rightHip_std'; leftKnee_mean'; leftKnee_std'; rightKnee_mean'; rightKnee_std'];
 
 if ~exist('out', 'dir')
   mkdir('out');
 end
 
 fid=fopen([file_path, '\', outFileName, '.model'],'w');
-fprintf(fid,'%6.2f, %6.2f, %6.2f, %6.2f, %6.2f, %6.2f, %6.2f, %6.2f\n', data);
-
+fprintf(fid,'%1.0f, %6.2f, %6.2f, %6.2f, %6.2f, %6.2f, %6.2f, %6.2f, %6.2f\n', data);
 fclose(fid);  %Ãö³¬ÀÉ®×
+'OK!!!!'
 
 
 
