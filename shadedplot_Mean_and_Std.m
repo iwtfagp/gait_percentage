@@ -44,21 +44,25 @@ xAxis = [0.01:0.01:100];
 subplot(2,2,1);
 shadedplot(xAxis, [leftHip_mean+leftHip_std]', [leftHip_mean-leftHip_std]', [1 0.7 0.7], 'r');
 title(header(1));
+ylabel('angle');xlabel('gait cycle(%)');
 hold on;plot(xAxis, leftHip_mean, 'r');hold off;
 
 subplot(2,2,2);
 shadedplot(xAxis, [rightHip_mean+rightHip_std]', [rightHip_mean-rightHip_std]', [0.7 0.7 1], 'b');
 title(header(2));
+ylabel('angle');xlabel('gait cycle(%)');
 hold on;plot(xAxis, rightHip_mean, 'b');hold off;
 
 subplot(2,2,3);
 shadedplot(xAxis, [leftKnee_mean+leftKnee_std]', [leftKnee_mean-leftKnee_std]', [1 0.7 0.7], 'r');
 title(header(3));
+ylabel('angle');xlabel('gait cycle(%)');
 hold on;plot(xAxis, leftKnee_mean, 'r');hold off;
 
 subplot(2,2,4);
 shadedplot(xAxis, [rightKnee_mean+rightKnee_std]', [rightKnee_mean-rightKnee_std]', [0.7 0.7 1], 'b');
 title(header(4));
+ylabel('angle');xlabel('gait cycle(%)');
 hold on;plot(xAxis, rightKnee_mean, 'b');hold off;
 
 NewFilename = [file_path, '\', outFileName, '_Model']

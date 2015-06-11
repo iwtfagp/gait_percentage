@@ -44,6 +44,8 @@ xAxis = [0.01:0.01:100];
 subplot(2,2,1);
 shadedplot(xAxis, [leftHip_mean+leftHip_std]', [leftHip_mean-leftHip_std]', [1 0.7 0.7], 'r');
 title(header(1));
+xlabel('angle')
+ylabel('')
 hold on;plot(xAxis, leftHip_mean, 'r');hold off;
 
 subplot(2,2,2);
